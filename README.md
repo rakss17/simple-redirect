@@ -20,6 +20,6 @@ This link will open the "activation" page/screen of our mobile app, pass the UID
 - "stude" in the example above must correspond to the name of your mobile app
 - "activation" should correspond to the link to your mobile app's screen/page
 - You can adjust the last two URL slugs/values according to your needs
-- simple-redirect does not allow HTTP/HTTPS redirects for security reasons. If you wish to enable it, clone this repository, change forbid_http_links to false in App.tsx, and deploy it to Github pages on your own account
+- simple-redirect does not allow HTTP/HTTPS redirects for security reasons. If you wish to enable it, fork this repository, change forbid_http_links to false in App.tsx, and deploy it to Github pages on your own account
 
 #### Powered by Vite, ReactJS, and React Router
