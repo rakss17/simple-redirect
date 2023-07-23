@@ -24,7 +24,7 @@ function App() {
 }
 function RedirectPage() {
   const forbid_web_links = true;
-  const { name, slug1, slug2, slug3 } = useParams(); // URL Params
+  const { name, slug1, slug2 } = useParams(); // URL Params
   const [color, setColor] = useState<CircularProgressColor>("inherit"); // Spinner color
   const [feedback, setFeedback] = useState(
     "Opening " + name + " on your mobile device "
@@ -32,7 +32,7 @@ function RedirectPage() {
   const [error, setError] = useState(false);
   const [forbidden, setForbidden] = useState(false); // If link is forbidden (HTTP/HTTPS)
   const [checked, setChecked] = useState(false); // If linked has been checked already
-  const url = name + "://" + slug1 + "/" + slug2 + "/" + slug3; // URL to redirect to
+  const url = name + "://" + slug1 + "/" + slug2; // URL to redirect to
   function ManualButton() {
     if (error) {
       return (
@@ -91,7 +91,6 @@ function RedirectPage() {
         <view style={{ padding: 16 }} />
         <h5>{"URL Payload 2:" + slug2}</h5>
       </view>
-      <h5>{"URL Payload 3:" + slug3}</h5>
       <h2 style={{ color: "white", textAlign: "center" }}>{feedback}</h2>
       <ManualButton />
     </view>
