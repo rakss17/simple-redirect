@@ -1,6 +1,6 @@
 # A simple web redirect to allow users to open links in-app
 
-Since Google forbids pop-ups in email attachments, I've decided to create an app to help me with that.
+Since Gmail forbids pop-ups redirecting to app links in email attachments, I've decided to create an app to help me with that.
 
 ## Sample Usage
 
