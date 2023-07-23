@@ -11,7 +11,7 @@ The link above when clicked will open another link
 
 stude://activation/MUID/12asdSDFGSDTSDFG
 
-This link will open the "activation" page/screen of our mobile app, pass the UID slug value of "MUID" and activation slug value of "12asdSDFGSDTSDFG"
+This link will open the "activation" page/screen of our mobile app, pass the UID slug value of "MUID" and activation slug value of "12asdSDFGSDTSDFG", thus allowing the user to activate his/her account without needing a dedicated web app
 
 ## Notes
 
