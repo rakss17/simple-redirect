@@ -24,7 +24,14 @@ function App() {
 }
 function RedirectPage() {
   const forbid_web_links = true;
-  const { name, slug1, slug2, slug3 } = useParams(); // URL Params
+  // eslint-disable-next-line prefer-const
+  let { name, slug1, slug2, slug3 } = useParams(); // URL Params
+  if (name === "exp") {
+    name = "exp://10.0.10.8:19000/--/";
+  } else {
+    name += "://";
+  }
+
   const [color, setColor] = useState<CircularProgressColor>("inherit"); // Spinner color
   const [feedback, setFeedback] = useState(
     "Opening " + name + " on your mobile device "
@@ -32,7 +39,10 @@ function RedirectPage() {
   const [error, setError] = useState(false);
   const [forbidden, setForbidden] = useState(false); // If link is forbidden (HTTP/HTTPS)
   const [checked, setChecked] = useState(false); // If linked has been checked already
-  const url = name + "://" + slug1 + "/" + slug2 + "/" + slug3; // URL to redirect to
+  let url = "";
+  if (name && slug1 && slug2 && slug3) {
+    url = name + slug1 + "/" + slug2 + "/" + slug3; // URL to redirect to
+  }
   function ManualButton() {
     if (error) {
       return (
