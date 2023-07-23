@@ -1,9 +1,8 @@
 # A simple web redirect to allow users to open links in-app
 
-To use the deployed app,
-
 # Sample Usage
 
+To use the deployed app,
 Have your activation email redirect a link like below
 https://lemeow125.github.io/simple-redirect/#/stude/activation/MUID/12asdSDFGSDTSDFG
 
