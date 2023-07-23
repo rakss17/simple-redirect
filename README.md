@@ -7,7 +7,7 @@ Since Gmail forbids pop-ups redirecting to app links in email attachments, I've 
 When a user creates an account, an email is sent which redirects to the link below
 https://lemeow125.github.io/simple-redirect/#/redirect/stude/activation/MUID/12asdSDFGSDTSDFG
 
-The link above when clicked will another link
+The link above when clicked will open another link
 
 stude://activation/MUID/12asdSDFGSDTSDFG
 
