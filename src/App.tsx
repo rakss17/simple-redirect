@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const router = createHashRouter([
   {
-    path: "redirect/:name/:slug1/:slug2",
+    path: "redirect/:name/:slug1/:slug2/:slug3",
     element: <RedirectPage />,
   },
 ]);
@@ -23,11 +23,16 @@ function App() {
   return <RouterProvider router={router} />;
 }
 function RedirectPage() {
-  const { name, slug1, slug2 } = useParams();
-  const [color, setColor] = useState<CircularProgressColor>("inherit");
-  const [feedback, setFeedback] = useState("");
+  const forbid_web_links = true;
+  const { name, slug1, slug2, slug3 } = useParams(); // URL Params
+  const [color, setColor] = useState<CircularProgressColor>("inherit"); // Spinner color
+  const [feedback, setFeedback] = useState(
+    "Opening " + name + " on your mobile device "
+  ); // Feedback to display to user
   const [error, setError] = useState(false);
-  const url = name + "://" + slug1 + "/" + slug2;
+  const [forbidden, setForbidden] = useState(false); // If link is forbidden (HTTP/HTTPS)
+  const [checked, setChecked] = useState(false); // If linked has been checked already
+  const url = name + "://" + slug1 + "/" + slug2 + "/" + slug3; // URL to redirect to
   function ManualButton() {
     if (error) {
       return (
@@ -43,24 +48,38 @@ function RedirectPage() {
     return <view />;
   }
   useEffect(() => {
-    setTimeout(() => {
-      window.open(url, "_blank");
-    }, 2000);
-    setTimeout(() => {
-      setColor("warning");
-      setFeedback("Link redirection is taking longer than usual");
-    }, 3000);
-    setTimeout(() => {
+    if (
+      (name === "http" ||
+        name === "HTTP" ||
+        name === "https" ||
+        name === "HTTPS") &&
+      forbid_web_links
+    ) {
+      setFeedback("Simple redirect is not allowed to redirect HTTP links");
       setColor("error");
-      setFeedback(
-        "Unable to open link automatically. Please open using the link below"
-      );
-      setError(true);
-    }, 5000);
-  }, []);
+      setForbidden(true);
+    }
+    if (!forbidden && checked) {
+      setTimeout(() => {
+        window.open(url, "_blank");
+      }, 2000);
+      setTimeout(() => {
+        setColor("warning");
+        setFeedback("Link redirection is taking longer than usual");
+      }, 3000);
+      setTimeout(() => {
+        setColor("error");
+        setFeedback(
+          "Unable to open link automatically. Please open using the link below"
+        );
+        setError(true);
+      }, 5000);
+    }
+    setChecked(true);
+  }, [forbidden, name, url, checked, forbid_web_links]);
   return (
     <view>
-      <CircularProgress size={128} color={color} />
+      <CircularProgress size={error ? 128 : 0} color={color} />
       <view
         style={{
           display: "flex",
@@ -72,10 +91,8 @@ function RedirectPage() {
         <view style={{ padding: 16 }} />
         <h5>{"URL Payload 2:" + slug2}</h5>
       </view>
-      <h1 style={{ color: "white", textAlign: "center" }}>
-        {"Opening " + name + " on your mobile device "}
-      </h1>
-      <h2>{feedback}</h2>
+      <h5>{"URL Payload 3:" + slug3}</h5>
+      <h2 style={{ color: "white", textAlign: "center" }}>{feedback}</h2>
       <ManualButton />
     </view>
   );
