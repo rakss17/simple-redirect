@@ -1,15 +1,25 @@
 # A simple web redirect to allow users to open links in-app
 
-# Sample Usage
+Since Google forbids pop-ups in email attachments, I've decided to create an app to help me with that.
+
+## Sample Usage
 
 When a user creates an account, an email is sent which redirects to the link below
 https://lemeow125.github.io/simple-redirect/#/redirect/stude/activation/MUID/12asdSDFGSDTSDFG
 
-The link above when clicked will open the "activation" page/screen of our mobile app, pass the UID slug value of "MUID" and activation slug value of "12asdSDFGSDTSDFG"
+The link above when clicked will another link
 
-Do not change the redirect keyword
-"stude" in the example above must correspond to the name of your mobile app
-"activation" should correspond to the link to your mobile app's screen/page
-you can adjust the last two URL slugs/values accordingly
+stude://activation/MUID/12asdSDFGSDTSDFG
 
-Powered by Vite, ReactJS, and React Router
+This link will open the "activation" page/screen of our mobile app, pass the UID slug value of "MUID" and activation slug value of "12asdSDFGSDTSDFG"
+
+## Notes
+
+- You should have Linking properly set up in your mobile app
+- Do not change the "redirect" keyword in the URL
+- "stude" in the example above must correspond to the name of your mobile app
+- "activation" should correspond to the link to your mobile app's screen/page
+- You can adjust the last two URL slugs/values according to your needs
+- simple-redirect does not allow HTTP/HTTPS redirects for security reasons. If you wish to enable it, clone this repository, change forbid_http_links to false in App.tsx, and deploy it to Github pages on your own account
+
+#### Powered by Vite, ReactJS, and React Router
