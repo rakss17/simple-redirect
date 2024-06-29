@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const router = createHashRouter([
   {
-    path: "redirect/:name/:slug1/:slug2/:slug3",
+    path: "redirect/:name/:slug1/:slug2/:slug3/:slug4",
     element: <RedirectPage />,
   },
 ]);
@@ -25,9 +25,9 @@ function App() {
 function RedirectPage() {
   const forbid_web_links = true;
   // eslint-disable-next-line prefer-const
-  let { name, slug1, slug2, slug3 } = useParams(); // URL Params
+  let { name, slug1, slug2, slug3, slug4 } = useParams(); // URL Params
   if (name === "exp") {
-    name = "exp://10.0.10.8:19000/--/";
+    name = "exp://192.168.1.17:8081/--/";
   } else {
     name += "://";
   }
@@ -40,14 +40,17 @@ function RedirectPage() {
   const [forbidden, setForbidden] = useState(false); // If link is forbidden (HTTP/HTTPS)
   const [checked, setChecked] = useState(false); // If linked has been checked already
   let url = "";
-  if (name && slug1 && slug2 && slug3) {
-    url = name + slug1 + "/" + slug2 + "/" + slug3; // URL to redirect to
+  if (name && slug1 && slug2 && slug3 && slug4) {
+    url = name + slug1 + "/" + slug2 + "?slug3=" + slug3 + "&slug4=" + slug4; // URL to redirect to
   }
   function ManualButton() {
     if (error) {
       return (
         <Button
-          onClick={() => window.open(url, "_blank")}
+          onClick={() => {
+            window.open(url, "_blank");
+            console.log("uid and token", slug3, slug4);
+          }}
           size="large"
           variant="contained"
         >
@@ -102,6 +105,7 @@ function RedirectPage() {
         <h5>{"URL Payload 2:" + slug2}</h5>
       </view>
       <h5>{"URL Payload 3:" + slug3}</h5>
+      <h5>{"URL Payload 4:" + slug4}</h5>
       <h2 style={{ color: "white", textAlign: "center" }}>{feedback}</h2>
       <ManualButton />
     </view>
